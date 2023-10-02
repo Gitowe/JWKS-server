@@ -48,9 +48,9 @@ def jwks():
     else:
         return jsonify({'message': 'Method Not Allowed'}), 405
 
-@app.route('/auth', methods=['GET', 'POST'])
+@app.route('/auth', methods=['POST'])
 def authenticate():
-    if request.method == 'POST' or request.method == 'GET':
+    if request.method == 'POST':
         expired = request.args.get('expired')
         key = keys[-1]  # Use the latest key (could be expired)
         expiry = key["exp"]
